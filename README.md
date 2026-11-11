@@ -1,6 +1,6 @@
 # ParcelDesk Container Repair — CA-4
 
-Intentionally broken starter for DevOps Foundation Module 4. Exactly three faults: build, runtime environment configuration, and reachability. Repair in that order using your assessment instructions. No solution included.
+Intentionally broken starter for DevOps Foundation Module 4. Exactly three faults: build, runtime environment configuration, and reachability. Repair in that order. Preserve the existing service and ports.
 
 ## Expected behaviour
 
@@ -12,7 +12,7 @@ Intentionally broken starter for DevOps Foundation Module 4. Exactly three fault
 - `GET http://localhost:8080/health` returns HTTP **200** and `ParcelDesk healthy`.
 - Unknown paths return 404. Do not add application features.
 
-## Setup — before assessment timer
+## Prerequisites and setup
 
 Docker installed/running, Git and POSIX shell available, host port 8080 free. Windows: use preconfigured WSL/Docker integration. Pre-pull image:
 
@@ -20,7 +20,7 @@ Docker installed/running, Git and POSIX shell available, host port 8080 free. Wi
 docker pull python:3.12-alpine
 ```
 
-Fork this repository, clone your fork, then create `fix/ca4-parceldesk`. No PR against this instructor repository.
+Fork this repository, clone your fork, then create `fix/ca4-parceldesk`. Push repairs only to your own fork.
 
 ## Build, run, inspect
 
@@ -37,11 +37,11 @@ These commands do not all succeed in the starter. Diagnose rather than replacing
 
 For a running container inspect mode using `docker exec parceldesk-ca4 printenv APP_MODE`. Configuration belongs at runtime, not hardcoded into source/image. No secrets needed. `EXPOSE` is metadata, not port publishing.
 
-## Submit and clean up
+## Scope and cleanup
 
-Follow instructor's `assessment.md`: one PDF with three labelled task sections, real before/after terminal evidence, changed lines and root-cause notes, plus your fork URL, branch and commit. Push only to your own fork. No cloud, paid services, PR, or video required.
+Repair only the Dockerfile source path, runtime variable in run.sh, and application's bind address. Preserve base image, required runtime mode check, route and ports. Rebuild after application changes; recreate without rebuilding for script-only changes. Keep genuine failure and recovery output plus short cause/fix/result notes.
 
-When finished:
+No host Python installation, external packages, cloud account, billing or secrets needed. Use curl for host requests and internet access for image downloads. Run commands from repository root. The script recreates parceldesk-ca4; ensure that name belongs to your exercise before using it.
 
 ```sh
 docker rm -f parceldesk-ca4
